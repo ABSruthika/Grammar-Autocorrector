@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"
+        integrity="sha512-BdHyGtczsUoFcEma+MfXc71KJLv/cd+sUsUaYYf2mXpfG/PtBjNXsPo78+rxWjscxUYN2Qr2+DbeGGiJx81ifg=="
+        crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grammar Autocorrecter</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="iam-text-container">
+        <div class="iam">I'm</div>
+        <div class="text"></div>
+    </div>
+
+    <div class="grid-container">
+        <div class="description-section">
+            <h2>Description</h2>
+            <p>Unleash the power of precise and polished writing with our Grammar Correcter! Say goodbye to embarrassing
+                typos, grammatical slip-ups, and spelling blunders.
+                Embrace a world where your words flow seamlessly, leaving a lasting impact.</p>
+        </div>
+
+        <div class="how-to-use-section">
+            <h2>How to Use</h2>
+            <ul>
+                <li>📝 <strong>Enter Your Text:</strong> Simply type or paste your text into the autocorrect box.</li>
+                <li>🚀 <strong>Click Autocorrect:</strong> Watch as our Grammar Correcter works its magic, refining your
+                    text in seconds.</li>
+                <li>🔊 <strong>Speak and Share:</strong> Use the "Speak" button to hear your refined text. Copy,
+                    download, or share it effortlessly.</li>
+            </ul>
+            <!-- Button to scroll down to the Grammar Autocorrecter section -->
+            <button id="scroll-to-autocorrecter-button">Click to Experience Grammar Autocorrecter</button>
+
+        </div>
+
+        <div class="key-feature-section">
+            <h2>Key Features</h2>
+            <ul>
+                <li>🔍 <strong>Advanced Autocorrection:</strong> Our intelligent autocorrection engine meticulously
+                    scans your text, fixing typos and suggesting improvements with surgical precision.</li>
+                <li>✨ <strong>Elevate Your Style:</strong> Elevate your writing style with suggestions that go beyond
+                    mere corrections. Discover vibrant synonyms and refine your expression effortlessly.</li>
+                <li>🚀 <strong>Effortless Writing:</strong> Focus on your ideas, and let our Grammar Correcter handle
+                    the nitty-gritty. Write with confidence, knowing your words are refined to perfection.</li>
+                <li>🔊 <strong>Text-to-Speech Magic:</strong> Want to hear your text come alive? Hit the "Speak" button,
+                    and let our Text-to-Speech feature transform your words into spoken eloquence.</li>
+                <li>📋 <strong>Copy, Download, Share:</strong> Seamlessly copy your polished text, download it for
+                    offline use, or share it with the world. Your words, your way.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="grammar-autocorrecter-section" id="grammar-autocorrecter-section">
+        <div class="grammar-autocorrecter-overlay">
+            <div class="gram">
+                <h1>Grammar Autocorrecter</h1>
+            <form id="autocorrect-form">
+                <label for="text">Enter text to autocorrect:</label>
+                <input type="text" id="text" name="text">
+                <button type="submit">Autocorrect</button>
+            </form>
+            <div id="autocorrected-text"></div>
+            <div id="button-container">
+                <button id="speak-button">Speak</button>
+                <button id="copy-button">Copy</button>
+                <a id="download-link" download="autocorrected.txt">Download</a>
+                <button id="clear-button">Clear</button>
+                <!-- Scroll to Top Button with Symbol -->
+                <button id="scroll-to-top-button" onclick="scrollToTop()">
+                    &#8593; <!-- Up arrow symbol -->
+                </button>
+            </div>
+            </div>          
+
+        </div>
+    </div>
+
+    <script>
+        var typing = new Typed(".text", {
+            strings: ["", "Grammar Correcter", "Spell Correcter", "Grammar Checker", "Spell Checker", "Both"],
+            typeSpeed: 100,
+            backSpeed: 40,
+            loop: true,
+        });
+
+        // JavaScript to handle scrolling to the Grammar Autocorrecter section
+        document.getElementById('scroll-to-autocorrecter-button').addEventListener('click', function () {
+            document.getElementById('grammar-autocorrecter-section').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // JavaScript to handle scrolling to the top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        // JavaScript to show/hide scroll-to-top button
+        window.onscroll = function () {
+            var scrollButton = document.getElementById('scroll-to-top-button');
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollButton.style.display = 'block';
+            } else {
+                scrollButton.style.display = 'none';
+            }
+        };
+
+        document.getElementById('clear-button').addEventListener('click', function () {
+            document.getElementById('text').value = '';
+            document.getElementById('autocorrected-text').innerText = '';
+        });
+    </script>
+
+    <script>
+        const speakButton = document.getElementById('speak-button');
+        const copyButton = document.getElementById('copy-button');
+        const downloadLink = document.getElementById('download-link');
+        const autocorrectedTextDiv = document.getElementById('autocorrected-text');
+
+        document.getElementById('autocorrect-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const inputText = document.getElementById('text').value;
+            fetch('/autocorrect_translate', {
+                method: 'POST',
+                body: new URLSearchParams({ 'text': inputText }),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+            })
+                .then(response => response.json())
+                .then(data => {
+                    autocorrectedTextDiv.innerText = data.autocorrected_text;
+                    speakButton.disabled = false;
+                    copyButton.disabled = false;
+                    downloadLink.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(data.autocorrected_text);
+                    downloadLink.style.display = 'block';
+                });
+        });
+
+        speakButton.addEventListener('click', function () {
+            const utterance = new SpeechSynthesisUtterance(autocorrectedTextDiv.innerText);
+            speechSynthesis.speak(utterance);
+        });
+
+        copyButton.addEventListener('click', function () {
+            const textArea = document.createElement('textarea');
+            textArea.value = autocorrectedTextDiv.innerText;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,307 @@
+/* Add a background color to the body for better contrast */
+body {
+    background-color: #e6e6fa;
+    /* Lavender Blush */
+}
+
+/* Style the header with a gradient background */
+h1 {
+    font-size: 48px;
+    margin: 40px 0;
+    text-align: center;
+    color: #800080;
+    /* Purple */
+}
+
+/* Style the form for autocorrect input */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Style the input field */
+input {
+    flex: 1;
+    padding: 15px;
+    margin: 10px 0;
+    border: 2px solid #800080;
+    border-radius: 8px;
+    font-size: 16px;
+}
+#button-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow buttons to wrap to the next line if needed */
+    justify-content: center; /* Center the buttons horizontally */
+    align-items: center; /* Center the buttons vertically */
+}
+/* Style the buttons with a hover effect */
+button,
+#speak-button,
+#copy-button,
+#download-link {
+    background-color: #800080;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 15px 30px;
+    margin: 10px 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+button:hover,
+#speak-button:hover,
+#copy-button:hover,
+#download-link:hover {
+    background-color: #4b0082;
+    /* Indigo */
+}
+
+/* Style the "Autocorrected Text" section */
+#autocorrected-text {
+    margin-top: 20px;
+    padding: 20px;
+    border: 2px solid #800080;
+    border-radius: 8px;
+    font-size: 18px;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+}
+
+/* Style the "I'm" and "text" elements using the Typed.js library */
+.iam-text-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #800080;
+    padding: 20px;
+    /* Adjust the padding to increase the height */
+}
+
+.iam {
+    color: #e6e6fa;
+    font-size: 75px;
+    /* Increase font size for emphasis */
+    padding: 15px;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+.text {
+    color: #e6e6fa;
+    border-right: 2px solid #4b0082;
+    font-size: 75px;
+    /* Increase font size for emphasis */
+    font-family: sans-serif;
+    text-align: center;
+}
+
+/* Additional styles for the grid container */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 40px;
+    /* Adjust spacing */
+}
+
+/* Additional styles for the description and how-to-use sections */
+.description-section,
+.how-to-use-section,
+.key-feature-section {
+    padding: 20px;
+    border: 2px solid #800080;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.description-section h2,
+.how-to-use-section h2,
+.key-feature-section h2 {
+    font-size: 36px;
+    color: #800080;
+    margin-bottom: 10px;
+}
+
+.description-section p,
+.how-to-use-section p,
+.key-feature-section p,
+.description-section li,
+.how-to-use-section li,
+.key-feature-section li {
+    font-size: 18px;
+    color: #555;
+    /* Adjust text color */
+    line-height: 1.6;
+    /* Increase line height for better readability */
+}
+
+/* Style hyperlinks within paragraphs and list items */
+.description-section a,
+.how-to-use-section a,
+.key-feature-section a,
+.description-section li a,
+.how-to-use-section li a,
+.key-feature-section li a {
+    color: #007BFF;
+    /* Link color */
+    text-decoration: underline;
+    transition: color 0.3s;
+}
+
+.description-section a:hover,
+.how-to-use-section a:hover,
+.key-feature-section a:hover,
+.description-section li a:hover,
+.how-to-use-section li a:hover,
+.key-feature-section li a:hover {
+    color: #0056b3;
+    /* Hover color */
+}
+
+/* Additional styles for the "How to Use" section */
+#scroll-to-autocorrecter-button {
+    background-color: #800080;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 15px 30px;
+    margin: 20px auto;
+    /* Center the button horizontally */
+    display: block;
+    /* Make it a block element to center it */
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+#scroll-to-autocorrecter-button:hover {
+    background-color: #4b0082;
+}
+
+/* Additional styles for the "Grammar Autocorrecter" section */
+.grammar-autocorrecter-section {
+    width: 100%;
+    height: 100vh;
+    box-sizing: border-box;
+    margin-top: 40px;
+    /* Adjust spacing */
+    padding: 20px;
+    border: 2px solid #800080;
+    border-radius: 8px;
+    background-image: url('image.jpg');
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    /* Added for overlay positioning */
+}
+
+/* Overlay to enhance readability */
+.grammar-autocorrecter-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Adjust opacity as needed */
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.grammar-autocorrecter-section h1,
+#autocorrect-form,
+#autocorrected-text,
+#button-container {
+    font-size: 36px;
+    
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+    /* Ensure these elements appear above the overlay */
+
+}
+
+.grammar-autocorrecter-section button,
+.grammar-autocorrecter-section a {
+    background-color: #800080;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 20px 40px;
+    margin: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.grammar-autocorrecter-section button:hover,
+.grammar-autocorrecter-section a:hover {
+    background-color: #4b0082;
+}
+
+#clear-button {
+    background-color: #800080;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 15px 30px;
+    margin: 10px 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+#clear-button:hover {
+    background-color: #4b0082;
+}
+
+#scroll-to-top-button {
+    background-color: #800080;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    /* Make it a circle */
+    padding: 10px;
+    /* Adjust padding */
+    position: fixed;
+    bottom: 20px;
+    /* Adjust distance from the bottom */
+    right: 20px;
+    /* Adjust distance from the right */
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+#scroll-to-top-button:hover {
+    background-color: #4b0082;
+    display: none;
+}
+
+.gram{
+    background-color: rgb(207, 204, 228);
+    box-sizing: border-box;
+    margin-top: 40px;
+    /* Adjust spacing */
+    padding: 20px;
+    border: 2px solid #800080;
+    border-radius: 8px;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
